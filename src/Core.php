@@ -18,9 +18,11 @@ class Core
 		$cartecian = [];
 		foreach (array_shift($array) as $value) {
 			if (count($array) > 0) {
-				$cartesian[] = array_merge([$value], $this->cartesian($array));
+				foreach ($this->cartesian($array) as $child) {
+					$cartesian[] = array_merge([$value], $child);
+				}
 			} else {
-				$cartesian[] = $value;
+				$cartesian[] = [$value];
 			}
 		}
 		return $cartesian;
