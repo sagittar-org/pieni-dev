@@ -1,3 +1,5 @@
-/vendor/
-!/vendor/pieni
+/vendor/atoum/
+/vendor/bin/
+/vendor/composer/
+/vendor/autoload.php
 /composer.lock
