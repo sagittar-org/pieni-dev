@@ -1,7 +1,13 @@
 <?php
-require_once 'src/Core.php';
+require_once __DIR__.'/vendor/pieni/core/src/Core.php';
 
 $core = new \pieni\core\Core();
-
-define('CONFIG', ['segments' => ['language' => 'languages', 'actor' => 'actors']]);
-print_r($core->c('config'));
+$core->response(
+	$core->request(
+		[
+			__DIR__.'/application',
+			__DIR__.'/vendor/pieni/core',
+		],
+		$core->segments()
+	)
+);
