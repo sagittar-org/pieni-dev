@@ -1,0 +1,18 @@
+{
+    "core": {
+        "segments": {
+            "language": {
+                "value": "languages"
+            },
+            "actor": {
+                "value": "actors"
+            }
+        },
+        "languages": {
+            "en": []
+        },
+        "actors": {
+            "g": []
+        }
+    }
+}

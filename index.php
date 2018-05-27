@@ -2,4 +2,6 @@
 require_once 'src/Core.php';
 
 $core = new \pieni\core\Core();
-print_r($core->cartesian([['a', 'b'], ['x', 'y', 'z'], ['i']]));
+
+define('CONFIG', ['segments' => ['language' => 'languages', 'actor' => 'actors']]);
+print_r($core->c('config'));

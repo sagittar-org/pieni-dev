@@ -5,15 +5,6 @@ require_once __DIR__.'/../src/Core.php';
 
 class Core extends \atoum
 {
-	public function testSegments()
-	{
-		$this->
-			given($this->newTestedInstance)->
-			string($this->testedInstance->segments())->
-			isEqualTo('-')
-		;
-	}
-
 	public function testCartesian()
 	{
 		$this->
@@ -31,6 +22,40 @@ class Core extends \atoum
 				['b', 'y', 'i'],
 				['b', 'z', 'i'],
 			])
+		;
+	}
+
+	public function testC()
+	{
+		define('CONFIG', ['segments' => ['language' => 'languages', 'actor' => 'actors']]);
+		$this->
+			given($this->newTestedInstance)->
+			array($this->testedInstance->c('config.segments'))->
+			isEqualTo(['language' => 'languages', 'actor' => 'actors'])
+		;
+	}
+
+	public function testFallback()
+	{
+		$this->
+			given($this->newTestedInstance)->
+			string($this->testedInstance->fallback([
+				[__DIR__.'/../'],
+				['src', 'tests', ''],
+				['composer.json'],
+			]))->
+			isEqualTo(realpath(__DIR__.'/../composer.json'))
+		;
+	}
+
+	public function testRequest()
+	{
+		$this->
+			given($this->newTestedInstance)->
+			array($this->testedInstance->request([
+				__DIR__.'/../',
+			], ''))->
+			isEqualTo([])
 		;
 	}
 }
