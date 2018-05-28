@@ -26,9 +26,9 @@ class Core extends \atoum
 
 	public function testC()
 	{
-		define('CONFIG', ['segments' => ['language' => 'languages', 'actor' => 'actors']]);
+		define('pieni\core\CONFIG', ['segments' => ['language' => 'languages', 'actor' => 'actors']]);
 		$this->
-			array(\pieni\core\Core::c('config.segments'))->
+			array(\pieni\core\Core::c('config.segments', '\pieni\core\\'))->
 			isEqualTo(['language' => 'languages', 'actor' => 'actors'])
 		;
 	}
