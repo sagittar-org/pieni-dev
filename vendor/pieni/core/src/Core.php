@@ -79,8 +79,8 @@ class Core
 	public static function response($vars)
 	{
 		if (self::c('request.type') === 'api') {
-			return json_encode($vars, JSON_PRETTY_PRINT)."\n";
-			exit(0);
+			echo json_encode($vars, JSON_PRETTY_PRINT)."\n";
+			return;
 		}
 		require_once self::fallback([self::c('packages'), ['views'], [self::c('request.class'), ''], ['response.php']]);
 	}

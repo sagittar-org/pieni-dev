@@ -63,9 +63,11 @@ class Core extends \atoum
 	{
 		$this->
 			given($this->newTestedInstance)->
-			output($this->testedInstance->response($this->testedInstance->request([
-				__DIR__.'/../../../../vendor/pieni/core',
-			], 'api')))->
+			output(function(){
+				$this->testedInstance->response($this->testedInstance->request([
+					__DIR__.'/../../../../vendor/pieni/core',
+				], 'api'));
+			})->
 			isEqualTo("[]\n")
 		;
 	}

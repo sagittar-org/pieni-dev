@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__.'/vendor/pieni/core/src/Core.php';
+require_once __DIR__.'/vendor/pieni/utility/src/Utility.php';
 
 \pieni\core\Core::response(
 	\pieni\core\Core::request(

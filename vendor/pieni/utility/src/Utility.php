@@ -3,20 +3,6 @@ namespace pieni\utility;
 
 class Utility
 {
-	public function r($expr)
-	{
-		echo "<pre>\n";
-		print_r($expr);
-		echo "</pre>\n";
-	}
-
-	public function e($expr)
-	{
-		echo "<pre>\n";
-		var_export($expr);
-		echo "</pre>\n";
-	}
-
 	public function pub($path, $return = false)
 	{
 		$url = preg_replace('#^'.FCPATH.'/#', '', Core::fallback([Core::g('packages'), ["public/{$path}"]]));
@@ -62,8 +48,12 @@ class Utility
 		echo $url;
 	}
 
-	public function h($str)
+	public function h($str, $return = false)
 	{
-		echo htmlentities($str, ENT_QUOTES);
+		$h = htmlentities($str, ENT_QUOTES | ENT_HTML5);
+		if ($return === true) {
+			return $h;
+		}
+		echo $h;
 	}
 }
