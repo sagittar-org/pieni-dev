@@ -3,22 +3,13 @@ namespace pieni\utility;
 
 class Utility
 {
-	public function pub($path, $return = false)
+	public function h($str, $return = false)
 	{
-		$url = preg_replace('#^'.FCPATH.'/#', '', Core::fallback([Core::g('packages'), ["public/{$path}"]]));
-		$package = preg_replace('#/public/.*#', '', $url);
-		@mkdir('public/'.dirname($package), 0755, true);
-		@symlink(str_repeat('../', substr_count($package, '/') + 1)."{$package}/public", "public/{$package}");
-		$url = '/'.trim(
-			preg_replace('/index.php$/', '',
-				preg_replace("#^{$_SERVER['DOCUMENT_ROOT']}#", '', $_SERVER['SCRIPT_FILENAME'])
-			),'/'
-		).'/public/'.preg_replace('#public/#', '', $url);
-		$url = preg_replace('#/+#', '/', $url);
+		$h = htmlentities($str, ENT_QUOTES | ENT_HTML5);
 		if ($return === true) {
-			return $url;
+			return $h;
 		}
-		echo $url;
+		echo $h;
 	}
 
 	public function href($path, $params = [], $return = false)
@@ -48,12 +39,21 @@ class Utility
 		echo $url;
 	}
 
-	public function h($str, $return = false)
+	public function pub($path, $return = false)
 	{
-		$h = htmlentities($str, ENT_QUOTES | ENT_HTML5);
+		$url = preg_replace('#^'.FCPATH.'/#', '', Core::fallback([Core::g('packages'), ["public/{$path}"]]));
+		$package = preg_replace('#/public/.*#', '', $url);
+		@mkdir('public/'.dirname($package), 0755, true);
+		@symlink(str_repeat('../', substr_count($package, '/') + 1)."{$package}/public", "public/{$package}");
+		$url = '/'.trim(
+			preg_replace('/index.php$/', '',
+				preg_replace("#^{$_SERVER['DOCUMENT_ROOT']}#", '', $_SERVER['SCRIPT_FILENAME'])
+			),'/'
+		).'/public/'.preg_replace('#public/#', '', $url);
+		$url = preg_replace('#/+#', '/', $url);
 		if ($return === true) {
-			return $h;
+			return $url;
 		}
-		echo $h;
+		echo $url;
 	}
 }
