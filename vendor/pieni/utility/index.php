@@ -1,12 +1,14 @@
 <?php
 require_once __DIR__.'/vendor/pieni/core/src/Core.php';
 
-\pieni\core\Core::response(
-	\pieni\core\Core::request(
+$core = new \pieni\core\Core();
+$core->response(
+	$core->request(
 		[
 			__DIR__.'/application',
+			__DIR__.'/vendor/pieni/utility',
 			__DIR__.'/vendor/pieni/core',
 		],
-		\pieni\core\Core::segments()
+		$core->segments()
 	)
 );
