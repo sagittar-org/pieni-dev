@@ -8,18 +8,28 @@ class Utility extends \atoum
 	public function testH()
 	{
 		$this->
-			given($this->newTestedInstance)->
 			output(function(){
-				$this->testedInstance->h('<>"\'');
+				\pieni\utility\Utility::h('<>"\'');
 			})->
 			isEqualTo('&lt;&gt;&quot;&apos;')
 		;
 		$this->
-			given($this->newTestedInstance)->
 			string(
-				$this->testedInstance->h('<>"\'', true)
+				\pieni\utility\Utility::h('<>"\'', true)
 			)->
 			isEqualTo('&lt;&gt;&quot;&apos;')
 		;
 	}
+/*
+	public function testHref()
+	{
+		$this->
+			given($this->newTestedInstance)->
+			output(function(){
+				$this->testedInstance->href('member/view/1');
+			})->
+			isEqualTo('member/view/1')
+		;
+	}
+*/
 }

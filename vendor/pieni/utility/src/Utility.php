@@ -14,6 +14,8 @@ class Utility
 
 	public function href($path, $params = [], $return = false)
 	{
+print_r(c('request.type'));
+return;
 		$type = isset($params['type']) ? $params['type'] : g('req')->type;
 		$language = isset($params['language']) ? $params['language'] : g('req')->language;
 		$actor = isset($params['actor']) ? $params['actor'] : g('req')->actor;

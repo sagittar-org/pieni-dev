@@ -8,8 +8,7 @@ class Core extends \atoum
 	public function testCartesian()
 	{
 		$this->
-			given($this->newTestedInstance)->
-			array($this->testedInstance->cartesian([
+			array(\pieni\core\Core::cartesian([
 				['a', 'b'],
 				['x', 'y', 'z'],
 				['i'],
@@ -29,8 +28,7 @@ class Core extends \atoum
 	{
 		define('CONFIG', ['segments' => ['language' => 'languages', 'actor' => 'actors']]);
 		$this->
-			given($this->newTestedInstance)->
-			array($this->testedInstance->c('config.segments'))->
+			array(\pieni\core\Core::c('config.segments'))->
 			isEqualTo(['language' => 'languages', 'actor' => 'actors'])
 		;
 	}
@@ -38,8 +36,7 @@ class Core extends \atoum
 	public function testFallback()
 	{
 		$this->
-			given($this->newTestedInstance)->
-			string($this->testedInstance->fallback([
+			string(\pieni\core\Core::fallback([
 				[__DIR__.'/../'],
 				['src', 'tests', ''],
 				['composer.json'],
@@ -51,8 +48,7 @@ class Core extends \atoum
 	public function testRequest()
 	{
 		$this->
-			given($this->newTestedInstance)->
-			array($this->testedInstance->request([
+			array(\pieni\core\Core::request([
 				__DIR__.'/../../../../vendor/pieni/core',
 			], 'api'))->
 			isEqualTo([])
@@ -62,9 +58,8 @@ class Core extends \atoum
 	public function testResponse()
 	{
 		$this->
-			given($this->newTestedInstance)->
 			output(function(){
-				$this->testedInstance->response($this->testedInstance->request([
+				\pieni\core\Core::response(\pieni\core\Core::request([
 					__DIR__.'/../../../../vendor/pieni/core',
 				], 'api'));
 			})->
