@@ -20,7 +20,7 @@ class Utility extends \atoum
 			isEqualTo('&lt;&gt;&quot;&apos;')
 		;
 	}
-/*
+
 	public function testHref()
 	{
 		$this->
@@ -31,5 +31,4 @@ class Utility extends \atoum
 			isEqualTo('member/view/1')
 		;
 	}
-*/
 }
