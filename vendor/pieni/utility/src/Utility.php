@@ -3,7 +3,7 @@ namespace pieni\utility;
 
 class Utility
 {
-	public function h($str, $return = false)
+	public static function h($str, $return = false)
 	{
 		$h = htmlentities($str, ENT_QUOTES | ENT_HTML5);
 		if ($return === true) {
@@ -12,7 +12,7 @@ class Utility
 		echo $h;
 	}
 
-	public function href($path, $params = [], $return = false)
+	public static function href($path, $params = [], $return = false)
 	{
 		$segments = [];
 		$segments['type'] = isset($params['type']) ? $params['type'] : \pieni\core\Core::c('request.type', '\pieni\core\\');
@@ -39,7 +39,7 @@ class Utility
 		echo $url;
 	}
 
-	public function pub($path, $return = false)
+	public static function pub($path, $return = false)
 	{
 		$url = preg_replace('#^'.FCPATH.'/#', '', Core::fallback([Core::g('packages'), ["public/{$path}"]]));
 		$package = preg_replace('#/public/.*#', '', $url);
