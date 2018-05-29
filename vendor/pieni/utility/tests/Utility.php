@@ -31,7 +31,7 @@ class Utility extends \atoum
 			'languages' => ['en' => []],
 			'actors' => ['g' => []],
 		]);
-		define('pieni\core\REQUEST', ['type' => 'view', 'language' => 'en', 'actor' => 'g']);
+		define('REQUEST', ['type' => 'view', 'language' => 'en', 'actor' => 'g']);
 		$this->
 			output(function(){
 				\pieni\utility\Utility::href('member/view/1');
