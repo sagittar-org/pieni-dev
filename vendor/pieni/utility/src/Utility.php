@@ -41,7 +41,7 @@ class Utility
 
 	public static function pub($path, $return = false)
 	{
-		$url = preg_replace('#^'.FCPATH.'/#', '', Core::fallback([Core::g('packages'), ["public/{$path}"]]));
+		$url = preg_replace('#^'.\pieni\core\Core::c('fcpath').'/#', '', \pieni\core\Core::fallback([\pieni\core\Core::c('packages'), ["public/{$path}"]]));
 		$package = preg_replace('#/public/.*#', '', $url);
 		@mkdir('public/'.dirname($package), 0755, true);
 		@symlink(str_repeat('../', substr_count($package, '/') + 1)."{$package}/public", "public/{$package}");
@@ -51,6 +51,9 @@ class Utility
 			),'/'
 		).'/public/'.preg_replace('#public/#', '', $url);
 		$url = preg_replace('#/+#', '/', $url);
+return print_r([
+$url,
+], true);
 		if ($return === true) {
 			return $url;
 		}
