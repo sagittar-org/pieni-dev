@@ -26,8 +26,8 @@ class Utility extends \atoum
 	{
 		$_SERVER['DOCUMENT_ROOT'] = '/var/www/html';
 		$_SERVER['SCRIPT_FILENAME'] = '/var/www/html/index.php';
-		define('pieni\core\CONFIG', [
-			'segments' => ['language' => 'languages', 'actor' => 'actors'],
+		define('CONFIG', [
+			'segments' => ['language' => ['value' => 'languages'], 'actor' => ['value' => 'actors']],
 			'languages' => ['en' => []],
 			'actors' => ['g' => []],
 		]);
@@ -54,7 +54,7 @@ class Utility extends \atoum
 		define('PACKAGES', [realpath(__DIR__.'/../../../../vendor/pieni/utility')]);
 		$this->
 			if(
-				\pieni\utility\Utility::pub('logo.svg')
+				\pieni\utility\Utility::pub('logo.svg', true)
 			)->
 			boolean(file_exists(FCPATH.'/public/vendor/pieni/utility/logo.svg'))->
 			isTrue()

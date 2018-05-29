@@ -15,14 +15,14 @@ class Utility
 	public static function href($path, $params = [], $return = false)
 	{
 		$segments = [];
-		$segments['type'] = isset($params['type']) ? $params['type'] : \pieni\core\Core::c('request.type', '\pieni\core\\');
+		$segments['type'] = isset($params['type']) ? $params['type'] : \pieni\core\Core::c('request.type');
 		if ($segments['type'] === 'view') {
 			$segments['type'] = '';
 		}
-		foreach (\pieni\core\Core::c('config.segments', '\pieni\core\\') as $key => $value)
+		foreach (\pieni\core\Core::c('config.segments') as $key => $value)
 		{
-			$segments[$key] = isset($params[$key]) ? $params[$key] : \pieni\core\Core::c("request.{$key}", '\pieni\core\\');
-			if ($segments[$key] === array_keys(\pieni\core\Core::c("config.{$value}", '\pieni\core\\'))[0]) {
+			$segments[$key] = isset($params[$key]) ? $params[$key] : \pieni\core\Core::c("request.{$key}");
+			if ($segments[$key] === array_keys(\pieni\core\Core::c("config.{$value['value']}"))[0]) {
 				$segments[$key] = '';
 			}
 		}
