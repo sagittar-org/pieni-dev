@@ -5,12 +5,7 @@ class Core
 {
 	public static function segments()
 	{
-		if (php_sapi_name() === 'cli') {
-			$segments = end($GLOBALS['argv']);
-		} else {
-			$segments = $_SERVER['PATH_INFO'];
-		}
-		return $segments;
+		return isset($_SERVER['argv']) ? end($_SERVER['argv']) : $_SERVER['PATH_INFO'];
 	}
 
 	public static function c(string $path, string $namespace = '')

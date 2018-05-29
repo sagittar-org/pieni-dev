@@ -14,21 +14,19 @@ class Utility
 
 	public function href($path, $params = [], $return = false)
 	{
-print_r(c('request.type'));
-return;
-		$type = isset($params['type']) ? $params['type'] : g('req')->type;
-		$language = isset($params['language']) ? $params['language'] : g('req')->language;
-		$actor = isset($params['actor']) ? $params['actor'] : g('req')->actor;
-		if ($type === 'view') {
-			$type = '';
+		$segments = [];
+		$segments['type'] = isset($params['type']) ? $params['type'] : \pieni\core\Core::c('request.type', '\pieni\core\\');
+		if ($segments['type'] === 'view') {
+			$segments['type'] = '';
 		}
-		if ($language === array_keys(g('config')['languages'])[0]) {
-			$language = '';
+		foreach (\pieni\core\Core::c('config.segments', '\pieni\core\\') as $key => $value)
+		{
+			$segments[$key] = isset($params[$key]) ? $params[$key] : \pieni\core\Core::c("request.{$key}", '\pieni\core\\');
+			if ($segments[$key] === array_keys(\pieni\core\Core::c("config.{$value}", '\pieni\core\\'))[0]) {
+				$segments[$key] = '';
+			}
 		}
-		if ($actor === array_keys(g('config')['actors'])[0]) {
-			$actor = '';
-		}
-		$path = implode('/', [$type, $language, $actor, $path]);
+		$path = implode('/', $segments)."/{$path}";
 		$url = '/'.trim(
 			preg_replace('/index.php$/', '',
 				preg_replace("#^{$_SERVER['DOCUMENT_ROOT']}#", '', $_SERVER['SCRIPT_FILENAME'])

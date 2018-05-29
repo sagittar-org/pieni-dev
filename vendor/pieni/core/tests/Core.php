@@ -5,6 +5,21 @@ require_once __DIR__.'/../src/Core.php';
 
 class Core extends \atoum
 {
+	public function testSegments()
+	{
+		unset($_SERVER['argv']);
+		$_SERVER['PATH_INFO'] = 'member/view/1';
+		$this->
+			string(\pieni\core\Core::segments())->
+			isEqualTo('member/view/1')
+		;
+		$_SERVER['argv'] = ['member/view/2'];
+		$this->
+			string(\pieni\core\Core::segments())->
+			isEqualTo('member/view/2')
+		;
+	}
+
 	public function testCartesian()
 	{
 		$this->
