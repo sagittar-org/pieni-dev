@@ -33,14 +33,12 @@ class Utility extends \atoum
 		]);
 		define('pieni\core\REQUEST', ['type' => 'view', 'language' => 'en', 'actor' => 'g']);
 		$this->
-			given($this->newTestedInstance)->
 			output(function(){
 				\pieni\utility\Utility::href('member/view/1');
 			})->
 			isEqualTo('/member/view/1')
 		;
 		$this->
-			given($this->newTestedInstance)->
 			string(
 				\pieni\utility\Utility::href('member/view/1', [], true)
 			)->
@@ -50,16 +48,22 @@ class Utility extends \atoum
 
 	public function testPub()
 	{
-		$_SERVER['DOCUMENT_ROOT'] = '/var/www/html';
-		$_SERVER['SCRIPT_FILENAME'] = '/var/www/html/index.php';
-		define('FCPATH', realpath(__DIR__.'/../../../..'));
+		$_SERVER['DOCUMENT_ROOT'] = '/tmp';
+		$_SERVER['SCRIPT_FILENAME'] = '/tmp/index.php';
+		define('FCPATH', realpath('/tmp'));
 		define('PACKAGES', [realpath(__DIR__.'/../../../../vendor/pieni/utility')]);
 		$this->
-			given($this->newTestedInstance)->
-			string(
+			output(
 				\pieni\utility\Utility::pub('logo.svg')
 			)->
-			isEqualTo('/member/view/1')
+			isEqualTo('always fail.')
+		;
+		$this->
+			if(
+				\pieni\utility\Utility::pub('logo.svg')
+			)->
+			boolean(file_exists(FCPATH.'/public/vendor/pieni/utility/logo.svg'))->
+			isTrue()
 		;
 	}
 }
