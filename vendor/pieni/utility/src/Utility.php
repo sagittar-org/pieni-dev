@@ -51,9 +51,6 @@ class Utility
 			),'/'
 		).'/public/'.preg_replace('#public/#', '', $url);
 		$url = preg_replace('#/+#', '/', $url);
-return print_r([
-$url,
-], true);
 		if ($return === true) {
 			return $url;
 		}

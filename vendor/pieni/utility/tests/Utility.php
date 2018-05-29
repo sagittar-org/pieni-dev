@@ -48,16 +48,10 @@ class Utility extends \atoum
 
 	public function testPub()
 	{
-		$_SERVER['DOCUMENT_ROOT'] = '/tmp';
-		$_SERVER['SCRIPT_FILENAME'] = '/tmp/index.php';
-		define('FCPATH', realpath('/tmp'));
+		$_SERVER['DOCUMENT_ROOT'] = '/var/www/html';
+		$_SERVER['SCRIPT_FILENAME'] = '/var/www/html/index.php';
+		define('FCPATH', realpath(__DIR__.'/../../../..'));
 		define('PACKAGES', [realpath(__DIR__.'/../../../../vendor/pieni/utility')]);
-		$this->
-			output(
-				\pieni\utility\Utility::pub('logo.svg')
-			)->
-			isEqualTo('always fail.')
-		;
 		$this->
 			if(
 				\pieni\utility\Utility::pub('logo.svg')
@@ -65,5 +59,6 @@ class Utility extends \atoum
 			boolean(file_exists(FCPATH.'/public/vendor/pieni/utility/logo.svg'))->
 			isTrue()
 		;
+		shell_exec('rm -r '.FCPATH.'/public');
 	}
 }
