@@ -1,8 +1,8 @@
 <div class="jumbotron">
   <div class="container">
     <h1 class="display-3">pieni</h1>
-    <div>auto play short movie here.</div>
-    <p><a class="btn btn-primary btn-lg" href="#" role="button">Experience our <strong>Prototyping Console</strong> NOW &raquo;</a></p>
+    <p class="lead">THE RAPID PROTOTYPING</p>
+    <p><a class="btn btn-primary btn-lg" href="#" role="button">Experience now &raquo;</a></p>
   </div>
 </div>
 

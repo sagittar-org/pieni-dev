@@ -13,7 +13,20 @@
   <body>
 <?php load_view('nav', $vars, str_repeat(' ', 4)); ?>
 
+<div class="container">
+  <div class="row">
+    <div class="col-sm">
+
 <?php load_view(\pieni\core\REQUEST['method'], $vars); ?>
+
+    </div>
+    <div class="col-sm-3">
+
+<?php load_view('card', $vars); ?>
+
+    </div>
+  </div>
+</div>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

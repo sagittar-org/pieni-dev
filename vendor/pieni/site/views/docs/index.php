@@ -1,9 +1,16 @@
-<div class="container">
-  <h1>pieni ドキュメンテーション</h1>
-  <ul>
-    <li><a href="<?php href('docs/overview/core'); ?>">Coreクラス</a></li>
-    <ul>
-      <li><a href="<?php href('docs/reference/core/segments'); ?>">segments</a></li>
-    </ul>
-  </ul>
-</div>
+<h1>pieniへようこそ</h1>
+<p>
+  pieniはプロトタイピングに特化したPHPフレームワークです。<br>
+  いくつかのComposerパッケージに分割され提供されます。<br>
+</p>
+<h2>コンセプト</h2>
+<p>
+  DB設計後から独自ロジック実装前までをGUIで完了させ、その後はMVCパラダイムで開発を行います。<br>
+</p>
+<h2>特徴</h2>
+<p>
+  リクエスト: コントローラはWeb、CLIのどちらからもリクエストが可能。<br>
+  レスポンス: ビュー、JSONのどちらでもレスポンスが可能。<br>
+  フォールバック: 選択肢から最大優先度のファイルを自動選択する柔軟なローディング<br>
+  プロトタイピングコンソール: 強力なプロトタイピングツールとCRUD<br>
+</p>
