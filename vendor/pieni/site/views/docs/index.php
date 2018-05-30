@@ -1,9 +1,9 @@
 <div class="container">
   <h1>pieni ドキュメンテーション</h1>
   <ul>
-    <li><a href="<?php href('docs/view/core'); ?>">Coreクラス</a></li>
+    <li><a href="<?php href('docs/overview/core'); ?>">Coreクラス</a></li>
     <ul>
-      <li><a href="<?php href('docs/view/core/segments'); ?>">segments</a></li>
+      <li><a href="<?php href('docs/reference/core/segments'); ?>">segments</a></li>
     </ul>
   </ul>
 </div>
