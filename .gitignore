@@ -2,5 +2,6 @@
 /vendor/atoum/
 /vendor/bin/
 /vendor/composer/
+/vendor/phpoffice/
 /vendor/autoload.php
 /composer.lock
