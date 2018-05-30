@@ -15,14 +15,14 @@ class Utility
 	public static function href($path, $params = [], $return = false)
 	{
 		$segments = [];
-		$segments['type'] = isset($params['type']) ? $params['type'] : \pieni\core\Core::c('request.type');
+		$segments['type'] = isset($params['type']) ? $params['type'] : \pieni\core\REQUEST['type'];
 		if ($segments['type'] === 'view') {
 			$segments['type'] = '';
 		}
-		foreach (\pieni\core\Core::c('config.segments') as $key => $value)
+		foreach (\pieni\core\CONFIG['segments'] as $key => $value)
 		{
-			$segments[$key] = isset($params[$key]) ? $params[$key] : \pieni\core\Core::c("request.{$key}");
-			if ($segments[$key] === array_keys(\pieni\core\Core::c("config.{$value['value']}"))[0]) {
+			$segments[$key] = isset($params[$key]) ? $params[$key] : \pieni\core\REQUEST[$key];
+			if ($segments[$key] === array_keys(\pieni\core\CONFIG[$value['value']])[0]) {
 				$segments[$key] = '';
 			}
 		}
@@ -41,7 +41,7 @@ class Utility
 
 	public static function pub($path, $return = false)
 	{
-		$url = preg_replace('#^'.\pieni\core\Core::c('fcpath').'/#', '', \pieni\core\Core::fallback([\pieni\core\Core::c('packages'), ["public/{$path}"]]));
+		$url = preg_replace('#^'.\pieni\core\FCPATH.'/#', '', \pieni\core\Core::fallback([\pieni\core\PACKAGES, ["public/{$path}"]]));
 		$package = preg_replace('#/public/.*#', '', $url);
 		@mkdir('public/'.dirname($package), 0755, true);
 		@symlink(str_repeat('../', substr_count($package, '/') + 1)."{$package}/public", "public/{$package}");
