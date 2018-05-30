@@ -3,7 +3,7 @@ namespace pieni\utility;
 
 class Utility
 {
-	public static function h($str, $return = false)
+	public static function h(string $str, bool $return = false)
 	{
 		$h = htmlentities($str, ENT_QUOTES | ENT_HTML5);
 		if ($return === true) {
@@ -12,7 +12,7 @@ class Utility
 		echo $h;
 	}
 
-	public static function href($path, $params = [], $return = false)
+	public static function href(string $path, array $params = [], bool $return = false)
 	{
 		$segments = [];
 		$segments['type'] = isset($params['type']) ? $params['type'] : \pieni\core\REQUEST['type'];
@@ -39,7 +39,7 @@ class Utility
 		echo $url;
 	}
 
-	public static function pub($path, $return = false)
+	public static function pub(string $path, bool $return = false)
 	{
 		$url = preg_replace('#^'.\pieni\core\FCPATH.'/#', '', \pieni\core\Core::fallback([\pieni\core\PACKAGES, ["public/{$path}"]]));
 		$package = preg_replace('#/public/.*#', '', $url);
@@ -57,7 +57,7 @@ class Utility
 		echo $url;
 	}
 
-	public static function loadView($path, $vars = [], $indent = '', $return = false)
+	public static function loadView(string $path, array $vars = [], string $indent = '', bool $return = false)
 	{
 		ob_start();
 		require \pieni\core\Core::fallback([\pieni\core\PACKAGES, ['views'], [\pieni\core\REQUEST['class'], ''], ["{$path}.php"]]);

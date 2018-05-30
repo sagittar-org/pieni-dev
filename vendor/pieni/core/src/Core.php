@@ -63,6 +63,9 @@ class Core
 
 	public static function response($vars)
 	{
+		if ($vars === null) {
+			$vars = [];
+		}
 		if (\pieni\core\REQUEST['type'] === 'api') {
 			echo json_encode($vars, JSON_PRETTY_PRINT)."\n";
 			return;
