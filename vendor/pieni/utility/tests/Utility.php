@@ -26,12 +26,12 @@ class Utility extends \atoum
 	{
 		$_SERVER['DOCUMENT_ROOT'] = '/var/www/html';
 		$_SERVER['SCRIPT_FILENAME'] = '/var/www/html/index.php';
-		define('CONFIG', [
+		define('pieni\core\CONFIG', [
 			'segments' => ['language' => ['value' => 'languages'], 'actor' => ['value' => 'actors']],
 			'languages' => ['en' => []],
 			'actors' => ['g' => []],
 		]);
-		define('REQUEST', ['type' => 'view', 'language' => 'en', 'actor' => 'g']);
+		define('pieni\core\REQUEST', ['type' => 'view', 'language' => 'en', 'actor' => 'g']);
 		$this->
 			output(function(){
 				\pieni\utility\Utility::href('member/view/1');
@@ -50,15 +50,15 @@ class Utility extends \atoum
 	{
 		$_SERVER['DOCUMENT_ROOT'] = '/var/www/html';
 		$_SERVER['SCRIPT_FILENAME'] = '/var/www/html/index.php';
-		define('FCPATH', realpath(__DIR__.'/../../../..'));
-		define('PACKAGES', [realpath(__DIR__.'/../../../../vendor/pieni/utility')]);
+		define('pieni\core\FCPATH', realpath(__DIR__.'/../../../..'));
+		define('pieni\core\PACKAGES', [realpath(__DIR__.'/../../../../vendor/pieni/utility')]);
 		$this->
 			if(
 				\pieni\utility\Utility::pub('logo.svg', true)
 			)->
-			boolean(file_exists(FCPATH.'/public/vendor/pieni/utility/logo.svg'))->
+			boolean(file_exists(\pieni\core\FCPATH.'/public/vendor/pieni/utility/logo.svg'))->
 			isTrue()
 		;
-		shell_exec('rm -r '.FCPATH.'/public');
+		shell_exec('rm -r '.\pieni\core\FCPATH.'/public');
 	}
 }

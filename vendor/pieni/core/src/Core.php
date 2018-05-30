@@ -11,7 +11,13 @@ class Core
 	public static function c(string $path, string $namespace = '')
 	{
 		$arr = explode('.', $path);
-		$c = constant($namespace.strtoupper(array_shift($arr)));
+		if ($namespace === '') {
+			$namespace = __NAMESPACE__;
+		}
+		if ($namespace !== '') {
+			$namespace .= '\\';
+		}
+		$c = constant('\\'.$namespace.strtoupper(array_shift($arr)));
 		while (count($arr) > 0) {
 			$c = $c[array_shift($arr)];
 		}
@@ -46,9 +52,9 @@ class Core
 
 	public static function request(array $packages, string $segments)
 	{
-		define('FCPATH', realpath(__DIR__.'/../../../..'));
-		define('PACKAGES', $packages);
-		define('CONFIG', json_decode(file_get_contents(self::fallback([$packages, ['config.json']])), true));
+		define(__NAMESPACE__.'\FCPATH', realpath(__DIR__.'/../../../..'));
+		define(__NAMESPACE__.'\PACKAGES', $packages);
+		define(__NAMESPACE__.'\CONFIG', json_decode(file_get_contents(self::fallback([$packages, ['config.json']])), true));
 		$trimed = trim($segments, '/');
 		$params = $trimed !== '' ? explode('/', $trimed) : [];
 		$request['type'] = isset($params[0]) && in_array($params[0], ['api']) ? array_shift($params) : 'view';
@@ -58,7 +64,7 @@ class Core
 		$request['class'] = isset($params[0]) ? array_shift($params) : 'welcome';
 		$request['method'] = isset($params[0]) ? array_shift($params) : 'index';
 		$request['params'] = $params;
-		define('REQUEST', $request);
+		define(__NAMESPACE__.'\REQUEST', $request);
 		$class_name = ucfirst(self::c('request.class'));
 		$namespace = '';
 		$fallback = self::fallback([self::c('packages'), ['controllers'], ["{$class_name}.php"]]);

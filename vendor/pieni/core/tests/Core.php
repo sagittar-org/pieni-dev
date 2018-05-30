@@ -43,7 +43,7 @@ class Core extends \atoum
 	{
 		define('pieni\core\CONFIG', ['segments' => ['language' => 'languages', 'actor' => 'actors']]);
 		$this->
-			array(\pieni\core\Core::c('config.segments', '\pieni\core\\'))->
+			array(\pieni\core\Core::c('config.segments', 'pieni\core'))->
 			isEqualTo(['language' => 'languages', 'actor' => 'actors'])
 		;
 	}
