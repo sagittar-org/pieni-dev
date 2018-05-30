@@ -56,4 +56,15 @@ class Utility
 		}
 		echo $url;
 	}
+
+	public static function loadView($path, $vars = [], $indent = '', $return = false)
+	{
+		ob_start();
+		require \pieni\core\Core::fallback([\pieni\core\PACKAGES, ['views'], [\pieni\core\REQUEST['class'], ''], ["{$path}.php"]]);
+		$result = $indent.str_replace("\n", "\n{$indent}", trim(ob_get_clean()))."\n";
+		if ($return === true) {
+			return $result;
+		}
+		echo $result;
+	}
 }

@@ -9,3 +9,5 @@
 ## プッシュ
 git add -A && git commit -m "`date '+%Y-%m-%d %H:%M:%S'`" && git push
 
+## Travis CI
+[https://travis-ci.org/sagittar-org/pieni-dev](https://travis-ci.org/sagittar-org/pieni-dev)

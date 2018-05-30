@@ -61,4 +61,14 @@ class Utility extends \atoum
 		;
 		shell_exec('rm -r '.\pieni\core\FCPATH.'/public');
 	}
+
+	public function testLoadView()
+	{
+		define('pieni\core\REQUEST', ['class' => 'welcome']);
+		define('pieni\core\PACKAGES', [realpath(__DIR__.'/../../../../vendor/pieni/utility')]);
+		$this->
+			string(\pieni\utility\Utility::loadView('index', [], '', true))->
+			contains('pieni')
+		;
+	}
 }
