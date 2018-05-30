@@ -11,7 +11,7 @@ class Docs
 	public function view($id)
 	{
 		require_once \pieni\core\FCPATH.'/vendor/pieni/utility/helpers/utility.php';
-		$this->vars['content'] = load_view($id, [], '', true);
+		$this->vars['content'] = load_view(implode('/', func_get_args()), [], '', true);
 		return $this->vars;
 	}
 }
