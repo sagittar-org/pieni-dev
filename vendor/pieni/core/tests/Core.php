@@ -39,15 +39,6 @@ class Core extends \atoum
 		;
 	}
 
-	public function testC()
-	{
-		define('pieni\core\CONFIG', ['segments' => ['language' => 'languages', 'actor' => 'actors']]);
-		$this->
-			array(\pieni\core\Core::c('config.segments', 'pieni\core'))->
-			isEqualTo(['language' => 'languages', 'actor' => 'actors'])
-		;
-	}
-
 	public function testFallback()
 	{
 		$this->
