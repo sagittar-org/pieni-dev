@@ -1,7 +1,7 @@
 <?php
 namespace pieni\sync;
 
-class Driver
+interface Driver
 {
 	public function __construct(array $params = []);
 	public function mtime(string $name = '');

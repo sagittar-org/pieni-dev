@@ -5,7 +5,6 @@ class Json implements Driver
 {
 	public function __construct(array $params = [])
 	{
-		$this->handler = $params['handler'];
 		$this->path = $params['path'];
 	}
 
@@ -28,6 +27,6 @@ class Json implements Driver
 
 	private function file($name)
 	{
-		return "{$this->path}/".trim("{$this->handler->name}.{$name}", '.').".json";
+		return "{$this->path}/{$name}.json";
 	}
 }
