@@ -2,16 +2,6 @@
   <div class="container">
     <h1 class="display-3">pieni</h1>
     <p class="lead">THE RAPID PROTOTYPING</p>
-<!--
-    <iframe
-      width="560"
-      height="315"
-      src="https://www.youtube.com/embed/bnDyQnzRfuU?autoplay=1&showinfo=0&rel=0"
-      frameborder="0"
-      allow="autoplay; encrypted-media"
-      allowfullscreen
-    ></iframe>
--->
 
 <div id="player"></div>
 <script>
@@ -27,21 +17,21 @@ function onYouTubeIframeAPIReady() {
         height: 315,
         width: 560,
         videoId: 'bnDyQnzRfuU',
-        playerVars: {//パラメータ
-          playsinline: 1,// インライン再生指定
-          rel      : 0,// 関連動画出さない
-          controls: 1,// コントローラー出さない
-          showinfo: 0// タイトルとか動画情報出さない
+        playerVars: {
+          playsinline: 1,
+          rel      : 0,
+          controls: 1,
+          showinfo: 0
         },    
-        events: {//　イベント
+        events: {
             'onReady': onPlayerReady
         }
     });
 }
 
 function onPlayerReady() {
-  ytPlayer.mute();// ミュートにしてから
-  ytPlayer.playVideo();// 再生
+  ytPlayer.mute();
+  ytPlayer.playVideo();
 }
 </script>
 
