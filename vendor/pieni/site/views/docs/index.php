@@ -2,6 +2,7 @@
 <p>
   pieniはプロトタイピングに特化したPHPフレームワークです。<br>
   いくつかのComposerパッケージに分割され提供されます。<br>
+  開発環境ではpieni/consoleを、本番環境ではpieni/pieniをcomposer requireするとよいでしょう。<br>
 </p>
 <h2>コンセプト</h2>
 <p>

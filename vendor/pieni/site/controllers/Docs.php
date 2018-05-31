@@ -8,13 +8,28 @@ class Docs
 		require_once \pieni\core\FCPATH.'/vendor/pieni/utility/helpers/utility.php';
 	}
 
+	public function package($package)
+	{
+		require_once \pieni\core\FCPATH.'/vendor/autoload.php';
+		require_once \pieni\core\FCPATH.'/vendor/pieni/utility/helpers/utility.php';
+		$this->vars['package'] = $package;
+		$spreadsheet = (new \PhpOffice\PhpSpreadsheet\Reader\Xlsx())->load(\pieni\core\FCPATH."/vendor/pieni/site/views/docs/{$package}/{$package}.xlsx");
+		$sheet = $spreadsheet->getSheetByName('overview');
+		for ($r = 2; ($id = $sheet->getCellByColumnAndRow(1, $r)->getValue()) !== null; $r++)
+		{
+			if ($id !== 'overview') continue;
+			$this->vars['value'] = $sheet->getCellByColumnAndRow(2, $r)->getValue();
+		}
+		return $this->vars;
+	}
+
 	public function overview($package, $class)
 	{
 		require_once \pieni\core\FCPATH.'/vendor/autoload.php';
 		require_once \pieni\core\FCPATH.'/vendor/pieni/utility/helpers/utility.php';
 		$this->vars['package'] = $package;
 		$this->vars['class'] = $class;
-		$spreadsheet = (new \PhpOffice\PhpSpreadsheet\Reader\Xlsx())->load(\pieni\core\FCPATH."/vendor/pieni/site/views/docs/{$package}/{$class}.xlsx");
+		$spreadsheet = (new \PhpOffice\PhpSpreadsheet\Reader\Xlsx())->load(\pieni\core\FCPATH."/vendor/pieni/site/views/docs/{$package}/classes/{$class}.xlsx");
 		$sheet = $spreadsheet->getSheetByName('overview');
 		for ($r = 2; ($id = $sheet->getCellByColumnAndRow(1, $r)->getValue()) !== null; $r++)
 		{
@@ -30,7 +45,7 @@ class Docs
 		require_once \pieni\core\FCPATH.'/vendor/pieni/utility/helpers/utility.php';
 		$this->vars['package'] = $package;
 		$this->vars['class'] = $class;
-		$spreadsheet = (new \PhpOffice\PhpSpreadsheet\Reader\Xlsx())->load(\pieni\core\FCPATH."/vendor/pieni/site/views/docs/{$package}/{$class}.xlsx");
+		$spreadsheet = (new \PhpOffice\PhpSpreadsheet\Reader\Xlsx())->load(\pieni\core\FCPATH."/vendor/pieni/site/views/docs/{$package}/classes/{$class}.xlsx");
 		$sheet = $spreadsheet->getSheetByName('reference');
 		for ($r = 2; ($id = $sheet->getCellByColumnAndRow(1, $r)->getValue()) !== null; $r++)
 		{
