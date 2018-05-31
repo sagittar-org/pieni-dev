@@ -22,7 +22,7 @@
     </div>
     <div class="col-sm-3">
 
-<?php load_view('card', $vars); ?>
+<?php load_view('toc', $vars); ?>
 
     </div>
   </div>

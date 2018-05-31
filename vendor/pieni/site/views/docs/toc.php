@@ -6,15 +6,15 @@
     <h5 class="card-title">パッケージ, クラス</h5>
     <h5 class="card-title">pieni/core</h5>
     <p class="card-text">
-      <a href="<?php href('docs/overview/core'); ?>">\pieni\core\Core</a><br>
+      <a href="<?php href('docs/overview/core/Core'); ?>">\pieni\core\Core</a><br>
     </p>
     <h5 class="card-title">pieni/utility</h5>
     <p class="card-text">
-      \pieni\utility\Utility<br>
+      <a href="<?php href('docs/overview/utility/Utility'); ?>">\pieni\utility\Utility</a><br>
     </p>
     <h5 class="card-title">pieni/sync</h5>
     <p class="card-text">
-      \pieni\sync\Driver<br>
+      <a href="<?php href('docs/overview/sync/Driver'); ?>">\pieni\sync\Driver</a><br>
       \pieni\sync\Handler<br>
       \pieni\sync\Json<br>
     </p>

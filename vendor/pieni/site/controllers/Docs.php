@@ -8,12 +8,13 @@ class Docs
 		require_once \pieni\core\FCPATH.'/vendor/pieni/utility/helpers/utility.php';
 	}
 
-	public function overview($class)
+	public function overview($package, $class)
 	{
 		require_once \pieni\core\FCPATH.'/vendor/autoload.php';
 		require_once \pieni\core\FCPATH.'/vendor/pieni/utility/helpers/utility.php';
+		$this->vars['package'] = $package;
 		$this->vars['class'] = $class;
-		$spreadsheet = (new \PhpOffice\PhpSpreadsheet\Reader\Xlsx())->load(\pieni\core\FCPATH."/vendor/pieni/site/views/docs/{$class}.xlsx");
+		$spreadsheet = (new \PhpOffice\PhpSpreadsheet\Reader\Xlsx())->load(\pieni\core\FCPATH."/vendor/pieni/site/views/docs/{$package}/{$class}.xlsx");
 		$sheet = $spreadsheet->getSheetByName('overview');
 		for ($r = 2; ($id = $sheet->getCellByColumnAndRow(1, $r)->getValue()) !== null; $r++)
 		{
@@ -23,11 +24,13 @@ class Docs
 		return $this->vars;
 	}
 
-	public function reference($class, $method)
+	public function reference($package, $class, $method)
 	{
 		require_once \pieni\core\FCPATH.'/vendor/autoload.php';
 		require_once \pieni\core\FCPATH.'/vendor/pieni/utility/helpers/utility.php';
-		$spreadsheet = (new \PhpOffice\PhpSpreadsheet\Reader\Xlsx())->load(\pieni\core\FCPATH."/vendor/pieni/site/views/docs/{$class}.xlsx");
+		$this->vars['package'] = $package;
+		$this->vars['class'] = $class;
+		$spreadsheet = (new \PhpOffice\PhpSpreadsheet\Reader\Xlsx())->load(\pieni\core\FCPATH."/vendor/pieni/site/views/docs/{$package}/{$class}.xlsx");
 		$sheet = $spreadsheet->getSheetByName('reference');
 		for ($r = 2; ($id = $sheet->getCellByColumnAndRow(1, $r)->getValue()) !== null; $r++)
 		{
