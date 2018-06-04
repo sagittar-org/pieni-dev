@@ -38,14 +38,12 @@ class Core
 	{
 		define(__NAMESPACE__.'\FCPATH', realpath(__DIR__.'/../../../..'));
 		define(__NAMESPACE__.'\PACKAGES', $packages);
-		define(__NAMESPACE__.'\CONFIG', json_decode(file_get_contents(self::fallback([$packages, ['config/pieni_core.json']])), true));
-
-$config_handler = new \pieni\sync\Handler([
-	new \pieni\sync\Json(['path' => FCPATH.'/application/config']),
-	new Config(),
-]);
-$config_handler->get('pieni_core');
-
+		$config_handler = new \pieni\sync\Handler([
+			new \pieni\sync\Json(['path' => FCPATH.'/application/config']),
+			new Config(['array' => [$packages, ['config/pieni_core.json']]]),
+		]);
+		$config_handler->get('pieni_core');
+		define(__NAMESPACE__.'\CONFIG', json_decode(file_get_contents(FCPATH.'/application/config/pieni_core.json'), true));
 		$trimed = trim($segments, '/');
 		$params = $trimed !== '' ? explode('/', $trimed) : [];
 		$request['type'] = isset($params[0]) && in_array($params[0], ['api']) ? array_shift($params) : 'view';
