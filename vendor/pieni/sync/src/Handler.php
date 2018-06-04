@@ -3,13 +3,9 @@ namespace pieni\sync;
 
 class Handler
 {
-	public function __construct(string $name, $drivers)
+	public function __construct(array $drivers)
 	{
-		$this->name = $name;
-		foreach ($drivers as $driver) {
-			$driver[1]['handler'] = $this;
-			$this->drivers[] = new $driver[0]($driver[1]);
-		}
+		$this->drivers = $drivers;
 	}
 
 	public function mtime(string $name = '')
