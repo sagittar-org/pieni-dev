@@ -1,6 +1,11 @@
 <?php
 namespace pieni\core\tests\units;
 
+require_once __DIR__.'/../../sync/src/Driver.php';
+require_once __DIR__.'/../../sync/src/Json.php';
+require_once __DIR__.'/../../sync/src/Handler.php';
+require_once __DIR__.'/../src/FallbackSync.php';
+require_once __DIR__.'/../src/Config.php';
 require_once __DIR__.'/../src/Core.php';
 
 class Core extends \atoum
@@ -53,12 +58,14 @@ class Core extends \atoum
 
 	public function testRequest()
 	{
+		shell_exec('rm -r '.__DIR__.'/../../../../application');
 		$this->
 			array(\pieni\core\Core::request([
 				__DIR__.'/../../../../vendor/pieni/core',
 			], 'api'))->
 			isEqualTo([])
 		;
+		shell_exec('rm -r '.__DIR__.'/../../../../application');
 	}
 
 	public function testResponse()
